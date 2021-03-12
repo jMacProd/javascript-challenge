@@ -19,6 +19,7 @@ var tbody = d3.select("tbody");
 
 // Decided need its own function so can retun to full data
 function fulldata() {
+    tbody.html("");
     console.log(`There are ${tableData.length} records in this table.`);
     console.log("-");
     // Loop Through `data` to capture each object
@@ -117,14 +118,16 @@ function runEnter() {
     var inputElement = d3.select("#datetime");
     var inputValue = inputElement.property("value");
     //var inputstring  = inputValue.toString(); - unneccessary
-    console.log(`The date entered is ${inputValue}`);
+    //console.log(`The date entered is ${inputValue}`);
         //confirmed
     // call function - date needs to be a string
     //filteredtable(inputstring)
     if (inputValue === "") {
+        console.log("No date entered");
         fulldata()
     }
     else {
+        console.log(`The date entered is ${inputValue}`);
         filteredtable(inputValue)
     }
     
