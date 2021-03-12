@@ -37,4 +37,58 @@ tableData.forEach(function(sighting) {
     });
   });
 
+// Use a date form in your HTML document and write JavaScript
+    //code that will listen for events and search through the
+    //`date/time` column to find rows that match user input.
+
+
+ //Set date value to test function
+//var inputValue = "1/1/2010"
+
+// filter using date
+// filter function
+//var filteredData = tableData.filter(dataitem => dataitem.datetime === inputValue);
+
+// call date filter function
+//console.log(filteredData);
+  //confirmed
+
+// clear table - needs to be inside the function
+//tbody.html("");
+  //confirmed in html in Elements
+
+//add new table with filter results
+
+//filteredData.forEach(function(filteredsighting) {
+//    var row = tbody.append("tr");
+//    Object.entries(filteredsighting).forEach(function([key, value]) {
+//        var cell = row.append("td");
+//        cell.text(value);
+//    });
+//  });
+    // confirmed in webpage and html
+
+
+//define function that achieves the above
+
+ function filteredtable(date){
+     tbody.html("");
+     var filteredData = tableData.filter(dataitem => dataitem.datetime === date);
+     console.log(filteredData);
+        //confirmed
+     filteredData.forEach(function(filteredsighting) {
+         var row = tbody.append("tr");
+         Object.entries(filteredsighting).forEach(function([key, value]) {
+             var cell = row.append("td");
+             cell.text(value);
+         });
+       });
+ }
+
+// call function - date needs to be filter
+filteredtable('1/10/2010')
+
+
+//get date value from input - listening event
+
 
