@@ -85,10 +85,44 @@ tableData.forEach(function(sighting) {
        });
  }
 
-// call function - date needs to be filter
-filteredtable('1/10/2010')
-
+// call function - date needs to be in function
+//filteredtable('1/10/2010')
 
 //get date value from input - listening event
+
+//Reference the button id
+var button = d3.select("#filter-btn");
+
+//Reference the input field id
+var form = d3.select("form");
+
+// Create event handlers for clicking the button or pressing the enter key
+button.on("click", runEnter);
+form.on("submit",runEnter);
+
+// Create the function to run for both events
+function runEnter() {
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+
+    // Select the input element and get the raw HTML node
+    var inputElement = d3.select("#datetime");
+    var inputValue = inputElement.property("value");
+    var inputstring  = inputValue.toString();
+    console.log(inputstring);
+        //confirmed
+    
+    // call function - date needs to be a string
+    filteredtable(inputstring)
+
+
+}
+
+// call function - date needs to be a string
+//filteredtable("1/1/2010")
+
+// How to clear data 
+// perhaps if field blank return to main function
+
 
 
