@@ -95,11 +95,46 @@ function runEnter() {
 
 //function filteredtable(date, city, state, country, shape) {
 function filteredtable(date, city, state, country, shape) {
-    var tableDatadate = tableData.filter(dataitem => dataitem.datetime === date);
-    var tableDatacity = tableDatadate.filter(cityitem => cityitem.city === city);
-    var tableDatastate = tableDatacity.filter(stateitem => stateitem.state === state);
-    var tableDatacountry = tableDatastate.filter(ctryitem => ctryitem.country === country);
-    var tableDatashape = tableDatacountry.filter(shapeitem => shapeitem.shape === shape);
+    if (date === "") {
+        var tableDatadate = tableData
+    }
+    else {
+        var tableDatadate = tableData.filter(dataitem => dataitem.datetime === date);
+    }
+
+    if (city === "") {
+        var tableDatacity = tableDatadate
+    }
+    else {
+        var tableDatacity = tableDatadate.filter(cityitem => cityitem.city === city);
+    }
+
+    if (state === "") {
+        var tableDatastate = tableDatacity
+    }
+    else {
+        var tableDatastate = tableDatacity.filter(stateitem => stateitem.state === state);
+    }
+
+    if (country === ""){
+        var tableDatacountry = tableDatastate
+    }
+    else {
+        var tableDatacountry = tableDatastate.filter(ctryitem => ctryitem.country === country);
+    }
+
+    if (shape === "") {
+        var tableDatashape = tableDatacountry
+    }
+    else {
+        var tableDatashape = tableDatacountry.filter(shapeitem => shapeitem.shape === shape);
+    }
+
+    //var tableDatadate = tableData.filter(dataitem => dataitem.datetime === date);
+    //var tableDatacity = tableDatadate.filter(cityitem => cityitem.city === city);
+    //var tableDatastate = tableDatacity.filter(stateitem => stateitem.state === state);
+    //var tableDatacountry = tableDatastate.filter(ctryitem => ctryitem.country === country);
+    //var tableDatashape = tableDatacountry.filter(shapeitem => shapeitem.shape === shape);
 
 
     //This TableData should reflect each layer of filtering
