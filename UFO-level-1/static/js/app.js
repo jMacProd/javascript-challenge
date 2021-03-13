@@ -17,7 +17,7 @@ var tbody = d3.select("tbody");
 //    tableData.forEach(function(sighting) {
 //    var row = tbody.append("tr");
 
-// Decided need its own function so can retun to full data
+// Decided need its own function so can return to full data by calling function
 function fulldata() {
     tbody.html("");
     console.log(`There are ${tableData.length} records in this table.`);
@@ -118,10 +118,8 @@ function runEnter() {
     var inputElement = d3.select("#datetime");
     var inputValue = inputElement.property("value");
     //var inputstring  = inputValue.toString(); - unneccessary
-    //console.log(`The date entered is ${inputValue}`);
-        //confirmed
-    // call function - date needs to be a string
-    //filteredtable(inputstring)
+
+    //Added this conditional to allow blank values to return to main table
     if (inputValue === "") {
         console.log("No date entered");
         fulldata()
@@ -133,9 +131,4 @@ function runEnter() {
     
 }
 
-
-// How to clear data 
-// perhaps if field blank return to main function
-
-//if =="" then 
 
