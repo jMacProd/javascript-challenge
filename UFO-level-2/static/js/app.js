@@ -1,9 +1,10 @@
 // from data.js
 var tableData = data;
 
-//Capture the values in each field
 /////////////////////////////////////
 // LISTENING EVENT
+
+//Capture the values in each field
 
 //Reference the button id
 var button = d3.select("#filter-btn");
@@ -14,6 +15,9 @@ var form = d3.select("form");
 // Create event handlers for clicking the button or pressing the enter key
 button.on("click", runEnter);
 form.on("submit",runEnter);
+
+/////////////////////////////////////
+// FUNCTION TO COLLECT VALUES
 
 // Create the function to run for both events
 function runEnter() {
@@ -98,10 +102,47 @@ function filteredtable(date, city, state, country, shape) {
     var tableDatashape = tableDatacountry.filter(shapeitem => shapeitem.shape === shape);
 
 
-    //This TableData should reflect each layer of layering
+    //This TableData should reflect each layer of filtering
     console.log(tableDatashape);
-    console.log("----------");
+    console.log("-");
+
+    /////////////////////////////////////
+// ADD FILTERED DATA TO TABLE
+
+    function addtable() {
+        // Get a reference to the table body
+        var tbody = d3.select("tbody");
+        tbody.html("");
+        console.log(`There are ${tableDatashape.length} records in this table.`);
+        console.log("----------");
+        tableDatashape.forEach(function(sighting) {
+            var row = tbody.append("tr");
+            Object.entries(sighting).forEach(function([key, value]) {
+                var cell = row.append("td");
+                cell.text(value);
+            });
+        });
+    }
+    addtable()
 }
+
+// /////////////////////////////////////
+// // ADD FILTERED DATA TO TABLE
+
+// function addtable() {
+//     // Get a reference to the table body
+//     var tbody = d3.select("tbody");
+//     tbody.html("");
+//     console.log(`There are ${tableDatashape.length} records in this table.`);
+//     console.log("----------");
+//     tableDatashape.forEach(function(sighting) {
+//         var row = tbody.append("tr");
+//         Object.entries(sighting).forEach(function([key, value]) {
+//             var cell = row.append("td");
+//             cell.text(value);
+//         });
+//     });
+// }
 
 
 
