@@ -77,6 +77,32 @@ function runEnter() {
         console.log(`The shape entered is ${inputValueshape}`);
     }
     
-    console.log("----------");
+    //console.log("----------");
+
+    //filteredtable(inputValuedate, inputValuecity, inputValuestate, inputValuecountry, inputValueshape)
+    filteredtable(inputValuedate, inputValuecity, inputValuestate, inputValuecountry, inputValueshape) 
 
 }
+
+/////////////////////////////////////
+// FILTER DATA
+
+//Filter the data using captured values above
+
+//function filteredtable(date, city, state, country, shape) {
+function filteredtable(date, city, state, country, shape) {
+    var tableDatadate = tableData.filter(dataitem => dataitem.datetime === date);
+    var tableDatacity = tableDatadate.filter(cityitem => cityitem.city === city);
+    var tableDatastate = tableDatacity.filter(stateitem => stateitem.state === state);
+    var tableDatacountry = tableDatastate.filter(ctryitem => ctryitem.country === country);
+    var tableDatashape = tableDatacountry.filter(shapeitem => shapeitem.shape === shape);
+
+
+    //This TableData should reflect each layer of layering
+    console.log(tableDatashape);
+    console.log("----------");
+}
+
+
+
+
