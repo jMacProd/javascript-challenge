@@ -4,47 +4,6 @@ var tableData = data;
 var tbody = d3.select("tbody");
 
 //////////////////////////////////////
-// Drop down menu
-
-//DATE
-var tableDatabydates = d3.nest()
-  .key(function(d) { return d.datetime; })
-  .entries(tableData);
-//console.log(tableDatabydates);
-
-var tableDatabydatesStr = JSON.stringify(tableDatabydates)
-//console.log(data);
-var datescount = JSON.parse(tableDatabydatesStr);
-//console.log(datescount);
-
-//End up with a list of unique dates
-var datearray = [];
-for (var i in datescount) {
-    datearray.push(datescount[i].key);
-};
-console.log(datearray)
-
-//add select dropdown html tag
-var dropDown = d3.select('#dropdown_container')
-    .append("select")
-    .attr("class", "form-control")
-    .attr("id", "datetime");
-    //.attr("name", "date");
-//console.log(dropDown)
-
-// Add first option dropdown html tag
-var options = d3.select("#datetime")
-    .append("option");
-//    .attr("value", "1/1/2010")
-//   .text("1/1/2010");
-console.log(options);
-
-//Add the value to the option
-options.text(datearray[0])
-    .attr("value", datearray[0]);
-
-
-//////////////////////////////////////
 // FULL DATA INITIAL LOAD
 
 function fulldata() {

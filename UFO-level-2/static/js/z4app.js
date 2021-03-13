@@ -1,51 +1,57 @@
 // from data.js
 var tableData = data;
 
-var tbody = d3.select("tbody");
+//////////////////////////////////////
+// Collect array of unique values for drop down
+// https://appdividend.com/2019/04/11/how-to-get-distinct-values-from-array-in-javascript/
+
+//DATES
+var arraydates = tableData.map(function(date) {
+    return date.datetime;
+  });
+uniqueAges = [...new Set(arraydates)]
+console.log(uniqueAges);
 
 //////////////////////////////////////
-// Drop down menu
+// Select input and  array of unique values for drop down
 
-//DATE
-var tableDatabydates = d3.nest()
-  .key(function(d) { return d.datetime; })
-  .entries(tableData);
-//console.log(tableDatabydates);
+//Remove input tag
+//https://www.tutorialsteacher.com/d3js/dom-manipulation-using-d3js#remove
+d3.select('body').select('input').remove();
 
-var tableDatabydatesStr = JSON.stringify(tableDatabydates)
-//console.log(data);
-var datescount = JSON.parse(tableDatabydatesStr);
-//console.log(datescount);
+// check that the input elements have gone
+var ul = d3.select('body').selectAll('ul').html();
+//console.log(ul)
 
-//End up with a list of unique dates
-var datearray = [];
-for (var i in datescount) {
-    datearray.push(datescount[i].key);
-};
-console.log(datearray)
+// Append drop down emelent to li
+//Append select html tag to first li
+var selectapp = d3.select('body').select('li').append('select').attr(
+    "class", "form-control");
+//needed to add a second attibute of id
+var selectaddid = d3.select('body').select('li').select('select').attr(
+    "id", "form-datetime");
 
-//add select dropdown html tag
-var dropDown = d3.select('#dropdown_container')
-    .append("select")
-    .attr("class", "form-control")
-    .attr("id", "datetime");
-    //.attr("name", "date");
-//console.log(dropDown)
-
-// Add first option dropdown html tag
-var options = d3.select("#datetime")
-    .append("option");
-//    .attr("value", "1/1/2010")
-//   .text("1/1/2010");
-console.log(options);
-
-//Add the value to the option
-options.text(datearray[0])
-    .attr("value", datearray[0]);
+//Append the option tag 
+//var optionapp = d3.select('body').select('li').select('select').append('option').attr('value', "-").text('No selection');
+//var optionappselection = d3.select('body').select('li').select('select').select('option').attr('selected', '')
+var optionapp2 = d3.select('body').select('li').select('select').append('option').attr('value', "1/1/2010").text('1/1/2010');
+/* <select class="form-control" id="datetime">
+    <option value="" selected>No selection</option>
+    <option value="1/1/2010">1/1/2010</option>
+    <option value="1/2/2010">1/2/2010</option>
+    <option value="1/3/2010">1/3/2010</option>
+    <option value="1/4/2010">1/4/2010</option>
+    <option value="1/5/2010">1/5/2010</option>
+    <option value="1/6/2010">1/6/2010</option>
+    <option value="1/7/2010">1/7/2010</option>
+    </select> */
+console.log(ul)
 
 
 //////////////////////////////////////
 // FULL DATA INITIAL LOAD
+
+var tbody = d3.select("tbody");
 
 function fulldata() {
     tbody.html("");
@@ -90,8 +96,6 @@ function runEnter() {
     // Prevent the page from refreshing
     d3.event.preventDefault();
 
-    console.log('Filters:')
-    console.log('--------')
     //DATE
     // Select the input element and get the raw HTML node
     var inputElementdate = d3.select("#datetime");
@@ -149,6 +153,8 @@ function runEnter() {
     // else {
     //     console.log(`The shape entered is ${inputValueshape}`);
     // }
+    console.log('Filters:')
+    console.log('-------')
     console.log(`Date: ${inputValuedate}`);
     console.log(`City: ${inputValuecity}`);
     console.log(`State: ${inputValuestate}`);
@@ -168,7 +174,7 @@ function runEnter() {
 
 //function filteredtable(date, city, state, country, shape) {
 function filteredtable(date, city, state, country, shape) {
-    if (date === "") {
+    if (date === "-") {
         var tableDatadate = tableData
     }
     else {
