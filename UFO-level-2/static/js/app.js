@@ -3,144 +3,7 @@ var tableData = data;
 
 var tbody = d3.select("tbody");
 
-//////////////////////////////////////
-// Drop down menu
 
-//https://stackoverflow.com/questions/33777272/creating-a-drop-down-with-d3-js
-//https://stackoverflow.com/questions/20780835/putting-the-country-on-drop-down-list-using-d3-via-csv-file
-
-//DATE - UNIQUE ARRAY
-var datearray = tableData.map(function(array) {
-    return array.datetime;
-});
-uniquedates = [...new Set(datearray)]
-//console.log(uniquedates);
-
-//CITY - UNIQUE ARRAY
-var cityarray = tableData.map(function(array) {
-    return array.city;
-});
-uniquecities = [...new Set(cityarray)]
-//console.log(uniquecities);
-
-//STATE - UNIQUE ARRAY
-var statearray = tableData.map(function(array) {
-    return array.state;
-});
-uniquestates = [...new Set(statearray)]
-//console.log(uniquestates);
-
-//COUNTRY - UNIQUE ARRAY
-var ctryarray = tableData.map(function(array) {
-    return array.country;
-});
-uniquectry = [...new Set(ctryarray)]
-//console.log(uniquectry);
-
-//SHAPE - UNIQUE ARRAY
-var shapearray = tableData.map(function(array) {
-    return array.shape;
-});
-uniqueshape = [...new Set(shapearray)]
-//console.log(uniqueshape);
-
-    //Use nest function to get unique date as top level of nest
-//var tableDatabynest = d3.nest()
-//    .key(function(d) {return d.datetime})
-//    .entries(tableData);
-//console.log(tableDatabynest);
-
-//   var tableDatanestStr = JSON.stringify(tableDatabynest)
-//    //console.log(data);
- //   var itemcount = JSON.parse(tableDatanestStr);
-//    console.log(itemcount);
-
-    // //End up with a list of unique dates
-    // var datearray = [];
-    // for (var i in datescount) {
-    //     datearray.push(datescount[i].key);
-    // };
-    // console.log(datearray)
-
-
-
-
-
-//FIND UL AND GET HTML
-//var ulhtml = d3.select('ul').html();
-//console.log(ulhtml);
-
-
-
-//FIND LIST AND GET HTML - maybe not
-
-//REMOVE INPUT TAG
-//https://www.tutorialsteacher.com/d3js/dom-manipulation-using-d3js#remove
-//d3.select('ul').select('input').remove();
-
-//REMOVE LI TAG
-//https://www.tutorialsteacher.com/d3js/dom-manipulation-using-d3js#remove
-d3.select('ul').select('li').remove();
-
-
-
-// CREATE DROP DOWN
-
-function dropdownbuild(label, selectid, array) {
-
-    //ADD LI WITH HTML
-    var addli = d3.select('ul').append('li');
-    var liattr = addli.attr("class", "filter list-group-item");
-
-    var addlabel = addli.append('label');
-    var labelattr = addlabel.attr("for", label).text(`Select a ${label}`);
-    
-    //Add div ##dropdown_container
-    var adddiv = addli.append('div');
-    var divattr = adddiv.attr("id", '#dropdown_container');
-    
-    
-    //add select dropdown html tag
-    var dropDown = adddiv
-        .append("select")
-        .attr("class", "form-control")
-        .attr("id", selectid)
-        .attr("name", label);
-
-    // Add option dropdowns html tag
-    d3.select(`#${selectid}`).append('option').attr('value', "").text('No selection');
-    array.forEach(function(item) {
-        d3.select(`#${selectid}`)
-            .append("option")
-            .attr("value", item)
-            .text(item);
-    }
-    );
-    
-    // var options = d3.select("#datetime")
-    //     .append("option")
-    //     .attr("value", uniquedates[0])
-    //     .text(uniquedates[0]);
-
-
-    // //Add the value to the option
-    // options.text(datearray[0])
-    //     .attr("value", datearray[0]);
-}
-//DATES - CALL FUNCTION
-dropdownbuild('date', 'datetime', uniquedates)
-
-//CITY - CALL FUNCTION
-dropdownbuild('city', 'city', uniquecities)
-
-//STATE - CALL FUNCTION
-dropdownbuild('state', 'state', uniquestates)
-
-//COUNTY CALL FUNCTION
-dropdownbuild('country', 'country', uniquectry)
-
-//SHAPE CALL FUNCTION
-dropdownbuild('shape', 'shape', uniqueshape)
 
 //////////////////////////////////////
 // FULL DATA INITIAL LOAD
@@ -259,6 +122,9 @@ function runEnter() {
 
 }
 
+
+
+
 /////////////////////////////////////
 // FILTER DATA
 
@@ -313,7 +179,7 @@ function filteredtable(date, city, state, country, shape) {
     //console.log("-");
 
     /////////////////////////////////////
-// ADD FILTERED DATA TO TABLE
+    // ADD FILTERED DATA TO TABLE
 
     function addtable() {
         tbody.html("");
@@ -328,9 +194,231 @@ function filteredtable(date, city, state, country, shape) {
         });
     }
     addtable()
+    
+    newdropdowndata = []
+    tableDatashape.forEach(function(x) {
+        newdropdowndata.push(x);
+    });
+    
+    //newdropdowndatacount ()
+    // dynamicfilters ()
+    test ()
+
+    //REMOVE LI TAG
+    d3.select('ul').selectAll('li').remove();
+
+    
+    // if (date != "") {
+    //     var datearray = tableData.map(function(array) {
+    //         return array.datetime;
+    //     });
+    // }
+    // else {
+    //     var datearray = newdropdowndata.map(function(array) {
+    //         return array.datetime;
+    //     });
+    // }
+
+
+  
+    
+    //DATES - CALL FUNCTION
+    dropdownbuild('date', 'datetime', uniquedates)
+
+    //CITY - CALL FUNCTION
+    dropdownbuild('city', 'city', uniquecities)
+
+    //STATE - CALL FUNCTION
+    dropdownbuild('state', 'state', uniquestates)
+
+    //COUNTY CALL FUNCTION
+    dropdownbuild('country', 'country', uniquectry)
+
+    //SHAPE CALL FUNCTION
+    dropdownbuild('shape', 'shape', uniqueshape)
+
+    //Change button to Clear data
+    if (date==0 && city==0 && state==0 && country==0 && shape==0) {
+        d3.select ("#filter-btn").text("Filter Table");
+    }
+    else {
+        d3.select ("#filter-btn").text("Clear Filters");
+    }
+    
+    
+}
+
+
+//////////////////////////////////////
+// Defining dynamic data for dropdown list
+
+// //define empty tableDatashape
+var newdropdowndata = tableData
+//console.log(newdropdowndata.length);
+
+//function newdropdowndatacount () {
+//    console.log(newdropdowndata.length);
+//}
+
+
+// function dynamicfilters (){
+//     //if filter not happened yet then
+//     //user table data in the function
+//     //else use the final data in filter for unique arrays
+
+//     if (newdropdowndata.length === 0) {
+//         dropdowndata = tableData
+//     }
+//     else {
+//         dropdowndata = newdropdowndata
+//     }
+//}
+
+//////////////////////////////////////
+// Drop down menu upon load
+
+//https://stackoverflow.com/questions/33777272/creating-a-drop-down-with-d3-js
+//https://stackoverflow.com/questions/20780835/putting-the-country-on-drop-down-list-using-d3-via-csv-file
+
+function test () {
+    //DATE - UNIQUE ARRAY
+    var datearray = newdropdowndata.map(function(array) {
+        return array.datetime;
+    });
+    uniquedates = [...new Set(datearray)]
+    //console.log(uniquedates);
+
+    //CITY - UNIQUE ARRAY
+    var cityarray = newdropdowndata.map(function(array) {
+        return array.city;
+    });
+    uniquecities = [...new Set(cityarray)]
+    uniquecities.sort();
+    //console.log(uniquecities);
+
+    //STATE - UNIQUE ARRAY
+    var statearray = newdropdowndata.map(function(array) {
+    return array.state;
+    });
+    uniquestates = [...new Set(statearray)]
+    uniquestates.sort();
+    //console.log(uniquestates);
+
+    //COUNTRY - UNIQUE ARRAY
+    var ctryarray = newdropdowndata.map(function(array) {
+    return array.country;
+    });
+    uniquectry = [...new Set(ctryarray)]
+    uniquectry.sort();
+    //console.log(uniquectry);
+
+    //SHAPE - UNIQUE ARRAY
+    var shapearray = newdropdowndata.map(function(array) {
+    return array.shape;
+    });
+    uniqueshape = [...new Set(shapearray)]
+    uniqueshape.sort();
+    //console.log(uniqueshape);
+}
+test()
+
+//DATE - UNIQUE ARRAY
+////var datearray = tableData.map(function(array) {
+//    return array.datetime;
+//});
+//uniquedates = [...new Set(datearray)]
+//console.log(uniquedates);
+
+// //CITY - UNIQUE ARRAY
+// var cityarray = tableData.map(function(array) {
+//         return array.city;
+// });
+// uniquecities = [...new Set(cityarray)]
+// uniquecities.sort();
+// //console.log(uniquecities);
+
+// //STATE - UNIQUE ARRAY
+// var statearray = tableData.map(function(array) {
+//     return array.state;
+// });
+// uniquestates = [...new Set(statearray)]
+// uniquestates.sort();
+// //console.log(uniquestates);
+
+// //COUNTRY - UNIQUE ARRAY
+// var ctryarray = tableData.map(function(array) {
+//     return array.country;
+// });
+// uniquectry = [...new Set(ctryarray)]
+// uniquectry.sort();
+// //console.log(uniquectry);
+
+// //SHAPE - UNIQUE ARRAY
+// var shapearray = tableData.map(function(array) {
+//     return array.shape;
+// });
+// uniqueshape = [...new Set(shapearray)]
+// uniqueshape.sort();
+// //console.log(uniqueshape);
+
+
+//REMOVE LI TAG
+//https://www.tutorialsteacher.com/d3js/dom-manipulation-using-d3js#remove
+d3.select('ul').select('li').remove();
+
+
+// CREATE DROP DOWN
+
+function dropdownbuild(label, selectid, array) {
+
+
+    //ADD LI WITH HTML
+    var addli = d3.select('ul').append('li');
+    var liattr = addli.attr("class", "filter list-group-item");
+
+    var addlabel = addli.append('label');
+    var labelattr = addlabel.attr("for", label).text(`Select a ${label}`);
+        
+    //Add div ##dropdown_container
+    var adddiv = addli.append('div');
+    var divattr = adddiv.attr("id", '#dropdown_container');
+        
+        
+    //add select dropdown html tag
+    var dropDown = adddiv
+        .append("select")
+        .attr("class", "form-control")
+        .attr("id", selectid)
+        .attr("name", label);
+
+    // Add option dropdowns html tag
+    d3.select(`#${selectid}`).append('option').attr('value', "").text('Select');
+    
+
+    array.forEach(function(item) {
+        d3.select(`#${selectid}`)
+            .append("option")
+            .attr("value", item)
+            .text(item);
+    });
 }
 
 
 
+
+//DATES - CALL FUNCTION
+dropdownbuild('date', 'datetime', uniquedates)
+
+//CITY - CALL FUNCTION
+dropdownbuild('city', 'city', uniquecities)
+
+//STATE - CALL FUNCTION
+dropdownbuild('state', 'state', uniquestates)
+
+//COUNTY CALL FUNCTION
+dropdownbuild('country', 'country', uniquectry)
+
+//SHAPE CALL FUNCTION
+dropdownbuild('shape', 'shape', uniqueshape)
 
 
