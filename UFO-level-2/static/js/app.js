@@ -107,7 +107,8 @@ function dropdownbuild(label, selectid, array) {
         .attr("id", selectid)
         .attr("name", label);
 
-    // Add first option dropdown html tag
+    // Add option dropdowns html tag
+    d3.select(`#${selectid}`).append('option').attr('value', "").text('No selection');
     array.forEach(function(item) {
         d3.select(`#${selectid}`)
             .append("option")
