@@ -41,8 +41,7 @@ var form = d3.select("form");
 
 // Create event handlers for clicking the button or pressing the enter key
 button.on("click", runEnter);
-//form.on("submit",runEnter);
-form.on("change",runEnter);
+form.on("submit",runEnter);
 
 /////////////////////////////////////
 // FUNCTION TO COLLECT VALUES
@@ -167,7 +166,7 @@ function filteredtable(date, city, state, country, shape) {
     else {
         var tableDatashape = tableDatacountry.filter(shapeitem => shapeitem.shape === shape);
     }
-    
+
     //var tableDatadate = tableData.filter(dataitem => dataitem.datetime === date);
     //var tableDatacity = tableDatadate.filter(cityitem => cityitem.city === city);
     //var tableDatastate = tableDatacity.filter(stateitem => stateitem.state === state);
@@ -197,103 +196,25 @@ function filteredtable(date, city, state, country, shape) {
     addtable()
     
     newdropdowndata = []
-    console.log(`should be empty ${newdropdowndata.length}`)
     tableDatashape.forEach(function(x) {
         newdropdowndata.push(x);
     });
-    console.log(`should be full ${newdropdowndata.length}`)
     
     //newdropdowndatacount ()
     // dynamicfilters ()
     test ()
 
-    //To reduce filter option  depending on the current filter except for the filter option selected
-    //https://stackoverflow.com/questions/3536055/stopping-a-javascript-function-when-a-certain-condition-is-met
-    function runoptiondate () {
-        if (date != "")
-            return;
-        optiondate('date', 'datetime', uniquedates)
-    }
-    
-
-    function runoptioncity () {
-        if (city != "")
-            return;
-        optioncity('city', 'city', uniquecities)
-    }
-    
-
-    function runoptionstate () {
-        if (state != "")
-            return;
-        optionstate('state', 'state', uniquestates)
-    }
-
-    function runoptioncountry () {
-        if (country != "")
-            return;
-        optioncountry('country', 'country', uniquectry)
-    }
-
-    function runoptionshape () {
-        if (shape != "")
-            return;
-        optionshape('shape', 'shape', uniqueshape)
-    }
-
-    runoptiondate ()
-    runoptioncity ()
-    runoptionstate ()
-    runoptioncountry ()
-    runoptionshape ()
-
-    // //IF DATE EMPTY
-    // if (date != "") {
-    //     //EXCLUDING CALL TO DATE        
-    //     optioncity('city', 'city', uniquecities)
-    //     optionstate('state', 'state', uniquestates)
-    //     optioncountry('country', 'country', uniquectry)
-    //     optionshape('shape', 'shape', uniqueshape)
-    // }
-    // else{
-    //     optiondate('date', 'datetime', uniquedates)
-    //     optioncity('city', 'city', uniquecities)
-    //     optionstate('state', 'state', uniquestates)
-    //     optioncountry('country', 'country', uniquectry)
-    //     optionshape('shape', 'shape', uniqueshape)
-    // }
-
-    
-
-    
-    // optiondate('date', 'datetime', uniquedates)
-
-    // optioncity('city', 'city', uniquecities)
-
-    // optionstate('state', 'state', uniquestates)
-
-    // optioncountry('country', 'country', uniquectry)
-
-    // optionshape('shape', 'shape', uniqueshape)
-
     //REMOVE LI TAG
     //d3.select('ul').selectAll('li').remove();
 
-    
-    // if (date != "") {
-    //     var datearray = tableData.map(function(array) {
-    //         return array.datetime;
-    //     });
-    // }
-    // else {
-    //     var datearray = newdropdowndata.map(function(array) {
-    //         return array.datetime;
-    //     });
-    // }
-
-
-  
-    
+    if (date != "") {
+        dateA ()
+    }
+    else {
+        dateB
+    }
+   
+    optionbuild ()
     // //DATES - CALL FUNCTION
     // dropdownbuild('date', 'datetime', uniquedates)
 
@@ -309,12 +230,12 @@ function filteredtable(date, city, state, country, shape) {
     // //SHAPE CALL FUNCTION
     // dropdownbuild('shape', 'shape', uniqueshape)
 
-    // //Change button to Clear data
+    //Change button to Clear data
     // if (date==0 && city==0 && state==0 && country==0 && shape==0) {
-    //     d3.select ("#filter-btn").text("Filter Table");
+    //    d3.select ("#filter-btn").text("Filter Table");
     // }
     // else {
-    //     d3.select ("#filter-btn").text("Clear Filters");
+    //    d3.select ("#filter-btn").text("Clear Filters");
     // }
     
     
@@ -352,12 +273,35 @@ var newdropdowndata = tableData
 //https://stackoverflow.com/questions/33777272/creating-a-drop-down-with-d3-js
 //https://stackoverflow.com/questions/20780835/putting-the-country-on-drop-down-list-using-d3-via-csv-file
 
-function test () {
+
+function dateA () {
+    //DATE - UNIQUE ARRAY
+    var datearray = tableData.map(function(array) {
+        return array.datetime;
+    });
+    uniquedates = [...new Set(datearray)]
+    //console.log(uniquedates);
+}
+dateA()
+
+function dateB () {
     //DATE - UNIQUE ARRAY
     var datearray = newdropdowndata.map(function(array) {
         return array.datetime;
     });
     uniquedates = [...new Set(datearray)]
+    //console.log(uniquedates);
+}
+
+
+
+
+function test () {
+    //DATE - UNIQUE ARRAY
+    // var datearray = newdropdowndata.map(function(array) {
+    //     return array.datetime;
+    // });
+    // uniquedates = [...new Set(datearray)]
     //console.log(uniquedates);
 
     //CITY - UNIQUE ARRAY
@@ -436,13 +380,45 @@ test()
 
 //REMOVE LI TAG
 //https://www.tutorialsteacher.com/d3js/dom-manipulation-using-d3js#remove
-d3.select('ul').select('li').remove();
+d3.select('ul').select('li').select.remove();
 
 
 // CREATE DROP DOWN
 
-function dropdownbuild(label, selectid, array) {
+// function dropdownbuild(label, selectid, array) {
 
+//     //ADD LI WITH HTML
+//     var addli = d3.select('ul').append('li');
+//     var liattr = addli.attr("class", "filter list-group-item");
+
+//     var addlabel = addli.append('label');
+//     var labelattr = addlabel.attr("for", label).text(`Select a ${label}`);
+        
+//     //Add div ##dropdown_container
+//     var adddiv = addli.append('div');
+//     var divattr = adddiv.attr("id", '#dropdown_container');
+        
+        
+//     //add select dropdown html tag
+//     var dropDown = adddiv
+//         .append("select")
+//         .attr("class", "form-control")
+//         .attr("id", selectid)
+//         .attr("name", label);
+
+//     // Add option dropdowns html tag
+//     d3.select(`#${selectid}`).append('option').attr('value', "").text('Select');
+    
+
+//     array.forEach(function(item) {
+//         d3.select(`#${selectid}`)
+//             .append("option")
+//             .attr("value", item)
+//             .text(item);
+//     });
+// }
+
+function dropdownbuild(label, selectid, aray) {
 
     //ADD LI WITH HTML
     var addli = d3.select('ul').append('li');
@@ -465,17 +441,15 @@ function dropdownbuild(label, selectid, array) {
 
     // Add option dropdowns html tag
     d3.select(`#${selectid}`).append('option').attr('value', "").text('Select');
-    
 
-    array.forEach(function(item) {
+        array.forEach(function(item) {
         d3.select(`#${selectid}`)
             .append("option")
-            .attr("id", `${label}A`)
+            .attr("id", "optiondate")
             .attr("value", item)
             .text(item);
     });
 }
-
 //DATES - CALL FUNCTION
 dropdownbuild('date', 'datetime', uniquedates)
 
@@ -490,58 +464,24 @@ dropdownbuild('country', 'country', uniquectry)
 
 //SHAPE CALL FUNCTION
 dropdownbuild('shape', 'shape', uniqueshape)
+    
 
-function optiondate (label, selectid, array) {
-    d3.selectAll('#dateA').remove();
+function optionbuilddate (selectid, array) {
+
+    d3.select('#optiondate').remove();
     array.forEach(function(item) {
         d3.select(`#${selectid}`)
             .append("option")
-            .attr("id", `${label}A`)
             .attr("value", item)
             .text(item);
     });
 }
 
-function optioncity (label, selectid, array) {
-    d3.selectAll('#cityA').remove();
-    array.forEach(function(item) {
-        d3.select(`#${selectid}`)
-            .append("option")
-            .attr("id", `${label}A`)
-            .attr("value", item)
-            .text(item);
-    });
-}
 
-function optionstate (label, selectid, array) {
-    d3.selectAll('#stateA').remove();
-    array.forEach(function(item) {
-        d3.select(`#${selectid}`)
-            .append("option")
-            .attr("id", `${label}A`)
-            .attr("value", item)
-            .text(item);
-    });
-}
 
-function optioncountry (label, selectid, array) {
-    d3.selectAll('#countryA').remove();
-    array.forEach(function(item) {
-        d3.select(`#${selectid}`)
-            .append("option")
-            .attr("id", `${label}A`)
-            .attr("value", item)
-            .text(item);
-    });
-}
 
-function optionshape (label, selectid, array) {
-    d3.selectAll('#shapeA').remove();
-    array.forEach(function(item) {
-        d3.select(`#${selectid}`)
-            .append("option")
-            .attr("id", `${label}A`)
-            .attr("value", item)
-            .text(item);
-    });
-}
+
+
+
+
+
