@@ -67,7 +67,7 @@ uniqueshape = [...new Set(shapearray)]
 
 
 //FIND UL AND GET HTML
-var ulhtml = d3.select('ul').html();
+//var ulhtml = d3.select('ul').html();
 //console.log(ulhtml);
 
 
@@ -86,14 +86,14 @@ d3.select('ul').select('li').remove();
 
 // CREATE DROP DOWN
 
-function dropdownbuild() {
+function dropdownbuild(label, selectid, array) {
 
     //ADD LI WITH HTML
     var addli = d3.select('ul').append('li');
     var liattr = addli.attr("class", "filter list-group-item");
 
     var addlabel = addli.append('label');
-    var labelattr = addlabel.attr("for", "date").text("Select a date");
+    var labelattr = addlabel.attr("for", label).text(`Select a ${label}`);
     
     //Add div ##dropdown_container
     var adddiv = addli.append('div');
@@ -104,15 +104,15 @@ function dropdownbuild() {
     var dropDown = adddiv
         .append("select")
         .attr("class", "form-control")
-        .attr("id", "datetime")
-        .attr("name", "date");
+        .attr("id", selectid)
+        .attr("name", label);
 
     // Add first option dropdown html tag
-    uniquedates.forEach(function(date) {
-        d3.select("#datetime")
+    array.forEach(function(item) {
+        d3.select(`#${selectid}`)
             .append("option")
-            .attr("value", date)
-            .text(date);
+            .attr("value", item)
+            .text(item);
     }
     );
     
@@ -126,8 +126,20 @@ function dropdownbuild() {
     // options.text(datearray[0])
     //     .attr("value", datearray[0]);
 }
-dropdownbuild()
+//DATES - CALL FUNCTION
+dropdownbuild('date', 'datetime', uniquedates)
 
+//CITY - CALL FUNCTION
+dropdownbuild('city', 'city', uniquecities)
+
+//STATE - CALL FUNCTION
+dropdownbuild('state', 'state', uniquestates)
+
+//COUNTY CALL FUNCTION
+dropdownbuild('country', 'country', uniquectry)
+
+//SHAPE CALL FUNCTION
+dropdownbuild('shape', 'shape', uniqueshape)
 
 //////////////////////////////////////
 // FULL DATA INITIAL LOAD
