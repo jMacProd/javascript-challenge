@@ -35,6 +35,7 @@ fulldata();
 
 //Reference the button id
 var button = d3.select("#filter-btn");
+var resetbutton = button.text("Reset Table");
 
 //Reference the input field id
 var form = d3.select("form");
@@ -200,11 +201,11 @@ function filteredtable(date, city, state, country, shape) {
     addtable()
     
     newdropdowndata = []
-    console.log(`should be empty ${newdropdowndata.length}`)
+    //console.log(`should be empty ${newdropdowndata.length}`)
     tableDatashape.forEach(function(x) {
         newdropdowndata.push(x);
     });
-    console.log(`should be full ${newdropdowndata.length}`)
+    //console.log(`should be full ${newdropdowndata.length}`)
     
     //newdropdowndatacount ()
     // dynamicfilters ()
