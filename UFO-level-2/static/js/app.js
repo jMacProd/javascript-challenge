@@ -6,42 +6,127 @@ var tbody = d3.select("tbody");
 //////////////////////////////////////
 // Drop down menu
 
-//DATE
-var tableDatabydates = d3.nest()
-  .key(function(d) { return d.datetime; })
-  .entries(tableData);
-//console.log(tableDatabydates);
+//https://stackoverflow.com/questions/33777272/creating-a-drop-down-with-d3-js
+//https://stackoverflow.com/questions/20780835/putting-the-country-on-drop-down-list-using-d3-via-csv-file
 
-var tableDatabydatesStr = JSON.stringify(tableDatabydates)
-//console.log(data);
-var datescount = JSON.parse(tableDatabydatesStr);
-//console.log(datescount);
+//DATE - UNIQUE ARRAY
+var datearray = tableData.map(function(array) {
+    return array.datetime;
+});
+uniquedates = [...new Set(datearray)]
+//console.log(uniquedates);
 
-//End up with a list of unique dates
-var datearray = [];
-for (var i in datescount) {
-    datearray.push(datescount[i].key);
-};
-console.log(datearray)
+//CITY - UNIQUE ARRAY
+var cityarray = tableData.map(function(array) {
+    return array.city;
+});
+uniquecities = [...new Set(cityarray)]
+//console.log(uniquecities);
 
-//add select dropdown html tag
-var dropDown = d3.select('#dropdown_container')
-    .append("select")
-    .attr("class", "form-control")
-    .attr("id", "datetime");
-    //.attr("name", "date");
-//console.log(dropDown)
+//STATE - UNIQUE ARRAY
+var statearray = tableData.map(function(array) {
+    return array.state;
+});
+uniquestates = [...new Set(statearray)]
+//console.log(uniquestates);
 
-// Add first option dropdown html tag
-var options = d3.select("#datetime")
-    .append("option");
-//    .attr("value", "1/1/2010")
-//   .text("1/1/2010");
-console.log(options);
+//COUNTRY - UNIQUE ARRAY
+var ctryarray = tableData.map(function(array) {
+    return array.country;
+});
+uniquectry = [...new Set(ctryarray)]
+//console.log(uniquectry);
 
-//Add the value to the option
-options.text(datearray[0])
-    .attr("value", datearray[0]);
+//SHAPE - UNIQUE ARRAY
+var shapearray = tableData.map(function(array) {
+    return array.shape;
+});
+uniqueshape = [...new Set(shapearray)]
+//console.log(uniqueshape);
+
+    //Use nest function to get unique date as top level of nest
+//var tableDatabynest = d3.nest()
+//    .key(function(d) {return d.datetime})
+//    .entries(tableData);
+//console.log(tableDatabynest);
+
+//   var tableDatanestStr = JSON.stringify(tableDatabynest)
+//    //console.log(data);
+ //   var itemcount = JSON.parse(tableDatanestStr);
+//    console.log(itemcount);
+
+    // //End up with a list of unique dates
+    // var datearray = [];
+    // for (var i in datescount) {
+    //     datearray.push(datescount[i].key);
+    // };
+    // console.log(datearray)
+
+
+
+
+
+//FIND UL AND GET HTML
+var ulhtml = d3.select('ul').html();
+//console.log(ulhtml);
+
+
+
+//FIND LIST AND GET HTML - maybe not
+
+//REMOVE INPUT TAG
+//https://www.tutorialsteacher.com/d3js/dom-manipulation-using-d3js#remove
+//d3.select('ul').select('input').remove();
+
+//REMOVE LI TAG
+//https://www.tutorialsteacher.com/d3js/dom-manipulation-using-d3js#remove
+d3.select('ul').select('li').remove();
+
+
+
+// CREATE DROP DOWN
+
+function dropdownbuild() {
+
+    //ADD LI WITH HTML
+    var addli = d3.select('ul').append('li');
+    var liattr = addli.attr("class", "filter list-group-item");
+
+    var addlabel = addli.append('label');
+    var labelattr = addlabel.attr("for", "date").text("Select a date");
+    
+    //Add div ##dropdown_container
+    var adddiv = addli.append('div');
+    var divattr = adddiv.attr("id", '#dropdown_container');
+    
+    
+    //add select dropdown html tag
+    var dropDown = adddiv
+        .append("select")
+        .attr("class", "form-control")
+        .attr("id", "datetime")
+        .attr("name", "date");
+
+    // Add first option dropdown html tag
+    uniquedates.forEach(function(date) {
+        d3.select("#datetime")
+            .append("option")
+            .attr("value", date)
+            .text(date);
+    }
+    );
+    
+    // var options = d3.select("#datetime")
+    //     .append("option")
+    //     .attr("value", uniquedates[0])
+    //     .text(uniquedates[0]);
+
+
+    // //Add the value to the option
+    // options.text(datearray[0])
+    //     .attr("value", datearray[0]);
+}
+dropdownbuild()
 
 
 //////////////////////////////////////
