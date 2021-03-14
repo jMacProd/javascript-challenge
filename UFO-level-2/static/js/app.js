@@ -40,9 +40,12 @@ var button = d3.select("#filter-btn");
 var form = d3.select("form");
 
 // Create event handlers for clicking the button or pressing the enter key
-button.on("click", runEnter);
+//button.on("click", runEnter);
 //form.on("submit",runEnter);
 form.on("change",runEnter);
+button.on("click", reset);
+
+
 
 /////////////////////////////////////
 // FUNCTION TO COLLECT VALUES
@@ -326,6 +329,17 @@ function filteredtable(date, city, state, country, shape) {
 
 // //define empty tableDatashape
 var newdropdowndata = tableData
+
+function reset() {
+
+    location.reload();
+    return false;
+    
+    // fulldata()
+    // runEnter()
+    // test()
+}
+
 //console.log(newdropdowndata.length);
 
 //function newdropdowndatacount () {
