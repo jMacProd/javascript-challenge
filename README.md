@@ -7,11 +7,11 @@ Project is finalised
 
 ## Navigating the repository
 ### Directory: **Process Maps**
-* Contains following documents:
-    * UFO_Dynamic_Table_Webpage_Part1.png
-    * UFO_Dynamic_Table_Webpage_Part2.png
+Contains following documents:
+* UFO_Dynamic_Table_Webpage_Part1.png
+* UFO_Dynamic_Table_Webpage_Part2.png
 
-    ### Directory: **UFO-level-1**
+### Directory: **UFO-level-1**
 Contains following:
 * index.html
 * Subdirectories:
@@ -25,34 +25,20 @@ Contains following:
             * app.js
             * data.js
     
-    ### Directory: **UFO-level-1**
-    * Contains following:
-      * index.html
-        **Subdirectories**
-            **static**
-                **css**
-                    - style.css
-                **images**
-                    - nasa.jpg
-                    - ufo.svg
-                **js**
-                    - app.js
-                    - data.js
-
 ### Directory: **UFO-level-1**
-* Contains following:
-  * index.html
-    **Subdirectories**
-        **static**
-            **css**
-                - style.css
-            **images**
-                - nasa.jpg
-                - ufo.svg
-            **js**
-                - app.js
-                - data.js
-                **z.old files** to be ignored
+Contains following:
+* index.html
+* Subdirectories
+* static
+    * css   
+        * style.css
+    * images
+        *nasa.jpg
+        * ufo.svg
+    * js
+        * app.js
+        * data.js
+        * z.old files** to be ignored
 
 ## Running order and notes
 ### UFO-level-1
@@ -62,7 +48,7 @@ Contains following:
 * Table is rendered with full data with single date filter field
 * Accepted dates to be entered into filter field are from 1 Jan 2010 to 13 Jan 2010 as per data provided
 * Dates must be entered in US format ie 1/13/2010 - concentrated on filtering code
-* FIlter value can be submited via pressing the enter key or clicking the "Filter Table" button
+* Filter value can be submited via pressing the enter key or clicking the "Filter Table" button
 * Console logs will call the filter value and the number of records returned in the filtered table
 * Table is cleared and rendered again with filtered date
 * If filter field is left blank, the full data will be returned in the code
@@ -79,20 +65,19 @@ Contains following:
 * To be run on Google Chrome
 * Table is rendered with full data
 * Text filter field dynamically replaced with 5 dropdown filters
-* When filter is selected, table us automatically cleared and rendered again with filtered date
-* Subsequent filters can be selected to narrow down the table output.
+* When filter is selected, table is automatically cleared and rendered again with filtered data
+* Subsequent filters can be selected to narrow down the table output
 * Every time a filter is selected the other filters are dynamically adjusted to only include values available in the current data. The filter that was last selected remains the same. For instance, if a date is selected, only cities that had sightings on that date appear in the city filter. But the full date range remains so another date can be selected.
 * At each filter selection console logs will call the values for all filters and the number of records returned in the filtered table
 * The filter can be returned to no value (top of the dropdown list) to capture all available data.
-* The "Filger Table" button is dynamically replaced with a "Reset Table" button which reloads the index.html file, therefore rendering the table with full data.
+* The "Filtger Table" button is dynamically replaced with a "Reset Table" button which reloads the index.html file, therefore rendering the table with full data.
 
 **Considerations**
 * Used html start file provided - concentrated on filtering code. Priority was given to developing a user friendly dropdown filter over creating a webpage.
 * No data cleansing or sorting has taken place - concentrated on filtering code
 * Idealling, the "Reset Table" button would not refresh the index.html, but only re-filter the data and render the table. This was not able to be achieved by the deadlined.
 
-![UFO DYNAMIC TABLE WEBPAGE
-- Filtered by date, city, state, country and shape](https://github.com/jMacProd/javascript-challenge/blob/main/Process%20Maps/UFO_Dynamic_Table_Webpage_Part2.png)
+![UFO DYNAMIC TABLE WEBPAGE - Filtered by date, city, state, country and shape](https://github.com/jMacProd/javascript-challenge/blob/main/Process%20Maps/UFO_Dynamic_Table_Webpage_Part2.png)
 
 ## Technologies
 * HTML
