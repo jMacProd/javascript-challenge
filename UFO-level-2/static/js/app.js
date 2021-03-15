@@ -63,58 +63,29 @@ function runEnter() {
     var inputElementdate = d3.select("#datetime");
     var inputValuedate = inputElementdate.property("value");
 
-    //Added this conditional to allow blank values to return to main table
-    
-    //if (inputValuedate === "") {
-        //console.log("No date filter");
-    //}
-    //else {
-    //    console.log(`The date entered is ${inputValuedate}`);
-    //}
-
-    //CITY
+     //CITY
     // Select the input element and get the raw HTML node
     var inputElementcity = d3.select("#city");
     var inputValuecity = inputElementcity.property("value");
-    // if (inputValuecity === "") {
-    //     console.log("No city entered");
-    // }
-    // else {
-    //     console.log(`The city entered is ${inputValuecity}`);
-    // }
+ 
 
     //STATE
     // Select the input element and get the raw HTML node
     var inputElementstate = d3.select("#state");
     var inputValuestate = inputElementstate.property("value");
-    // if (inputValuestate === "") {
-    //     console.log("No state entered");
-    // }
-    // else {
-    //     console.log(`The state entered is ${inputValuestate}`);
-    // }
+
 
     //COUNTRY
     // Select the input element and get the raw HTML node
     var inputElementcountry = d3.select("#country");
     var inputValuecountry = inputElementcountry.property("value");
-    // if (inputValuecountry === "") {
-    //     console.log("No country entered");
-    // }
-    // else {
-    //     console.log(`The country entered is ${inputValuecountry}`);
-    // }
+ 
 
     //SHAPE
     // Select the input element and get the raw HTML node
     var inputElementshape = d3.select("#shape");
     var inputValueshape = inputElementshape.property("value");
-    // if (inputValueshape === "") {
-    //     console.log("No shape entered");
-    // }
-    // else {
-    //     console.log(`The shape entered is ${inputValueshape}`);
-    // }
+
     console.log(`Date: ${inputValuedate}`);
     console.log(`City: ${inputValuecity}`);
     console.log(`State: ${inputValuestate}`);
@@ -122,7 +93,7 @@ function runEnter() {
     console.log(`Shape: ${inputValueshape}`);
     //console.log("----------");
 
-    //filteredtable(inputValuedate, inputValuecity, inputValuestate, inputValuecountry, inputValueshape)
+    
     filteredtable(inputValuedate, inputValuecity, inputValuestate, inputValuecountry, inputValueshape) 
 
 }
@@ -171,17 +142,7 @@ function filteredtable(date, city, state, country, shape) {
     else {
         var tableDatashape = tableDatacountry.filter(shapeitem => shapeitem.shape === shape);
     }
-    
-    //var tableDatadate = tableData.filter(dataitem => dataitem.datetime === date);
-    //var tableDatacity = tableDatadate.filter(cityitem => cityitem.city === city);
-    //var tableDatastate = tableDatacity.filter(stateitem => stateitem.state === state);
-    //var tableDatacountry = tableDatastate.filter(ctryitem => ctryitem.country === country);
-    //var tableDatashape = tableDatacountry.filter(shapeitem => shapeitem.shape === shape);
-
-
-    //This TableData should reflect each layer of filtering
-    //console.log(tableDatashape);
-    //console.log("-");
+ 
 
     /////////////////////////////////////
     // ADD FILTERED DATA TO TABLE
@@ -250,77 +211,6 @@ function filteredtable(date, city, state, country, shape) {
     runoptionstate ()
     runoptioncountry ()
     runoptionshape ()
-
-    // //IF DATE EMPTY
-    // if (date != "") {
-    //     //EXCLUDING CALL TO DATE        
-    //     optioncity('city', 'city', uniquecities)
-    //     optionstate('state', 'state', uniquestates)
-    //     optioncountry('country', 'country', uniquectry)
-    //     optionshape('shape', 'shape', uniqueshape)
-    // }
-    // else{
-    //     optiondate('date', 'datetime', uniquedates)
-    //     optioncity('city', 'city', uniquecities)
-    //     optionstate('state', 'state', uniquestates)
-    //     optioncountry('country', 'country', uniquectry)
-    //     optionshape('shape', 'shape', uniqueshape)
-    // }
-
-    
-
-    
-    // optiondate('date', 'datetime', uniquedates)
-
-    // optioncity('city', 'city', uniquecities)
-
-    // optionstate('state', 'state', uniquestates)
-
-    // optioncountry('country', 'country', uniquectry)
-
-    // optionshape('shape', 'shape', uniqueshape)
-
-    //REMOVE LI TAG
-    //d3.select('ul').selectAll('li').remove();
-
-    
-    // if (date != "") {
-    //     var datearray = tableData.map(function(array) {
-    //         return array.datetime;
-    //     });
-    // }
-    // else {
-    //     var datearray = newdropdowndata.map(function(array) {
-    //         return array.datetime;
-    //     });
-    // }
-
-
-  
-    
-    // //DATES - CALL FUNCTION
-    // dropdownbuild('date', 'datetime', uniquedates)
-
-    // //CITY - CALL FUNCTION
-    // dropdownbuild('city', 'city', uniquecities)
-
-    // //STATE - CALL FUNCTION
-    // dropdownbuild('state', 'state', uniquestates)
-
-    // //COUNTY CALL FUNCTION
-    // dropdownbuild('country', 'country', uniquectry)
-
-    // //SHAPE CALL FUNCTION
-    // dropdownbuild('shape', 'shape', uniqueshape)
-
-    // //Change button to Clear data
-    // if (date==0 && city==0 && state==0 && country==0 && shape==0) {
-    //     d3.select ("#filter-btn").text("Filter Table");
-    // }
-    // else {
-    //     d3.select ("#filter-btn").text("Clear Filters");
-    // }
-    
     
 }
 
@@ -341,25 +231,6 @@ function reset() {
     // test()
 }
 
-//console.log(newdropdowndata.length);
-
-//function newdropdowndatacount () {
-//    console.log(newdropdowndata.length);
-//}
-
-
-// function dynamicfilters (){
-//     //if filter not happened yet then
-//     //user table data in the function
-//     //else use the final data in filter for unique arrays
-
-//     if (newdropdowndata.length === 0) {
-//         dropdowndata = tableData
-//     }
-//     else {
-//         dropdowndata = newdropdowndata
-//     }
-//}
 
 //////////////////////////////////////
 // Drop down menu upon load
@@ -409,44 +280,6 @@ function test () {
 }
 test()
 
-//DATE - UNIQUE ARRAY
-////var datearray = tableData.map(function(array) {
-//    return array.datetime;
-//});
-//uniquedates = [...new Set(datearray)]
-//console.log(uniquedates);
-
-// //CITY - UNIQUE ARRAY
-// var cityarray = tableData.map(function(array) {
-//         return array.city;
-// });
-// uniquecities = [...new Set(cityarray)]
-// uniquecities.sort();
-// //console.log(uniquecities);
-
-// //STATE - UNIQUE ARRAY
-// var statearray = tableData.map(function(array) {
-//     return array.state;
-// });
-// uniquestates = [...new Set(statearray)]
-// uniquestates.sort();
-// //console.log(uniquestates);
-
-// //COUNTRY - UNIQUE ARRAY
-// var ctryarray = tableData.map(function(array) {
-//     return array.country;
-// });
-// uniquectry = [...new Set(ctryarray)]
-// uniquectry.sort();
-// //console.log(uniquectry);
-
-// //SHAPE - UNIQUE ARRAY
-// var shapearray = tableData.map(function(array) {
-//     return array.shape;
-// });
-// uniqueshape = [...new Set(shapearray)]
-// uniqueshape.sort();
-// //console.log(uniqueshape);
 
 
 //REMOVE LI TAG
