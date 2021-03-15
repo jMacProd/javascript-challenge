@@ -12,18 +12,18 @@ Project is finalised
     * UFO_Dynamic_Table_Webpage_Part2.png
 
     ### Directory: **UFO-level-1**
-    * Contains following:
-      * index.html
-        Subdirectories:
-            static
-                css
-                    - style.css
-                images
-                    - nasa.jpg
-                    - ufo.svg
-                js
-                    - app.js
-                    - data.js
+Contains following:
+* index.html
+Subdirectories:
+- static
+- css
+-- style.css
+- images
+-- nasa.jpg
+-- ufo.svg
+- js
+-- app.js
+-- data.js
     
     ### Directory: **UFO-level-1**
     * Contains following:
