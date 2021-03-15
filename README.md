@@ -14,16 +14,16 @@ Project is finalised
     ### Directory: **UFO-level-1**
     * Contains following:
       * index.html
-    **Subdirectories**
-    **static**
-    **css**
-    - style.css
-    **images**
-    - nasa.jpg
-    - ufo.svg
-    **js**
-    - app.js
-    - data.js
+        Subdirectories:
+            static
+                css
+                    - style.css
+                images
+                    - nasa.jpg
+                    - ufo.svg
+                js
+                    - app.js
+                    - data.js
     
     ### Directory: **UFO-level-1**
     * Contains following:
