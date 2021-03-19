@@ -65,17 +65,16 @@ Contains following:
 * To be run on Google Chrome
 * Table is rendered with full data
 * Text filter field dynamically replaced with 5 dropdown filters
-* When filter is selected, table is automatically cleared and rendered again with filtered data
+* When filter is selected, table is automatically cleared and rendered again with filtered data - web page is not reloaded
 * Subsequent filters can be selected to narrow down the table output
 * Every time a filter is selected the other filters are dynamically adjusted to only include values available in the current data. The filter that was last selected remains the same. For instance, if a date is selected, only cities that had sightings on that date appear in the city filter. But the full date range remains so another date can be selected.
 * At each filter selection console logs will call the values for all filters and the number of records returned in the filtered table
 * The filter can be returned to no value (top of the dropdown list) to capture all available data.
-* The "Filtger Table" button is dynamically replaced with a "Reset Table" button which reloads the index.html file, therefore rendering the table with full data.
+* The "Filter Table" button is dynamically replaced with a "Reset Table" button which returns the table with full data - web page is not reloaded.
 
 **Considerations**
 * Used html start file provided - concentrated on filtering code. Priority was given to developing a user friendly dropdown filter over creating a webpage.
 * No data cleansing or sorting has taken place - concentrated on filtering code
-* Idealling, the "Reset Table" button would not refresh the index.html, but only re-filter the data and render the table. This was not able to be achieved by the deadlined.
 
 ![UFO DYNAMIC TABLE WEBPAGE - Filtered by date, city, state, country and shape](https://github.com/jMacProd/javascript-challenge/blob/main/Process%20Maps/UFO_Dynamic_Table_Webpage_Part2.png)
 
