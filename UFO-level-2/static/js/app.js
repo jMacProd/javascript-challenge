@@ -226,7 +226,26 @@ function reset() {
     //location.reload();
     //return false;
     fulldata()
+
+    d3.select('ul').selectAll('li').remove();
+    newdropdowndata = tableData
     test()
+    //DATES - CALL FUNCTION
+    dropdownbuild('date', 'datetime', uniquedates)
+
+    //CITY - CALL FUNCTION
+    dropdownbuild('city', 'city', uniquecities)
+
+    //STATE - CALL FUNCTION
+    dropdownbuild('state', 'state', uniquestates)
+
+    //COUNTY CALL FUNCTION
+    dropdownbuild('country', 'country', uniquectry)
+
+    //SHAPE CALL FUNCTION
+    dropdownbuild('shape', 'shape', uniqueshape)
+    
+    
 }
 
 
@@ -282,7 +301,7 @@ test()
 
 //REMOVE LI TAG
 //https://www.tutorialsteacher.com/d3js/dom-manipulation-using-d3js#remove
-d3.select('ul').select('li').remove();
+d3.select('ul').selectAll('li').remove();
 
 
 // CREATE DROP DOWN
