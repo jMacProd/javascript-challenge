@@ -223,12 +223,10 @@ var newdropdowndata = tableData
 
 function reset() {
 
-    location.reload();
-    return false;
-    
-    // fulldata()
-    // runEnter()
-    // test()
+    //location.reload();
+    //return false;
+    fulldata()
+    test()
 }
 
 
